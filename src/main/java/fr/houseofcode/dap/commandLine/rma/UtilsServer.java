@@ -15,7 +15,7 @@ import java.net.URL;
 public class UtilsServer {
 
     /**constant to define which browse is using.*/
-    private final String uSErAGENT = "Mozilla/5.0";
+    private  String uSErAGENT = "Mozilla/5.0";
 
     /**
      * load the next event on server.
@@ -23,7 +23,7 @@ public class UtilsServer {
      * @return the next event on server using identification
      * @throws IOException exception
      */
-    public String getNextEvent(final String userKey) throws IOException {
+    public String getNextEvent( String userKey) throws IOException {
         String event = callServer("/event/next", userKey);
         return event;
     }
@@ -34,7 +34,7 @@ public class UtilsServer {
      * @return the labels on server using identification
      * @throws IOException exception
      */
-    public String getLabels(final String userKey) throws IOException {
+    public String getLabels(String userKey) throws IOException {
         String label = callServer("/label/print", userKey);
         return label;
     }
@@ -45,7 +45,7 @@ public class UtilsServer {
      * @return the number of unread email on server using identification
      * @throws IOException exception
      */
-    public String getNbUnreadEmail(final String userKey) throws IOException {
+    public String getNbUnreadEmail( String userKey) throws IOException {
         String nbEmail = callServer("/email/nbUnread", userKey);
 
         return nbEmail;
@@ -60,7 +60,7 @@ public class UtilsServer {
      * @return a call to the server using identification
      * @throws IOException exception
      */
-    private String callServer(final String url, final String userKey)
+    private String callServer( String url,  String userKey)
             throws IOException {
 
         URL obj = new URL("http://localhost:8080"

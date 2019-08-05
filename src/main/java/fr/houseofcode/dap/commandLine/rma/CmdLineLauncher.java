@@ -15,15 +15,15 @@ public class CmdLineLauncher {
     /**
      * @return access to constant LOG.
      */
-    private static final Logger LOG = LogManager.getLogger();
+    private static  Logger LOG = LogManager.getLogger();
 
-    //    private final static String USER_AGENT = "Mozilla/5.0";
+    //    private  static String USER_AGENT = "Mozilla/5.0";
 
     /**
      * @param args for method main
      * @throws IOException exception
      */
-    public static void main(final String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         LOG.debug("D�but du Main avec comme argument : " + args);
 
@@ -33,10 +33,10 @@ public class CmdLineLauncher {
             String userKey = args[0];
             UtilsServer server = new UtilsServer();
 
-            final int nUMBERtHREE = 3;
-            final int nUMBERnINE = 9;
+             final int nUMBERtHREE = 3;
+             final int nUMBERnINE = 9;
 
-            int value = Integer.parseInt(args[1]);
+             int value = Integer.parseInt(args[1]);
 
             LOG.info("Utilisation d'un switch pour indiquer"
                     + " a l'utilisateur les possibilit�s" + args);
