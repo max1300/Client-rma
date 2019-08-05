@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.houseofcode.dap.commandLine.rma;
 
 import java.io.IOException;
@@ -9,21 +6,26 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * @author houseofcode
- *
+ * @author rma.
+ * 5 august 2019.
  */
+
 public class CmdLineLauncher {
+
+    /**
+     * @return access to constant LOG.
+     */
     private static final Logger LOG = LogManager.getLogger();
 
     //    private final static String USER_AGENT = "Mozilla/5.0";
 
     /**
-     * @param args
-     * @throws IOException 
+     * @param args for method main
+     * @throws IOException exception
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException {
 
-        LOG.debug("Début du Main avec comme argument : " + args);
+        LOG.debug("Dï¿½but du Main avec comme argument : " + args);
 
         if (args.length < 2) {
             System.out.println(usage());
@@ -36,7 +38,8 @@ public class CmdLineLauncher {
 
             int value = Integer.parseInt(args[1]);
 
-            LOG.info("Utilisation d'un switch pour indiquer à l'utilisateur les possibilités" + args);
+            LOG.info("Utilisation d'un switch pour indiquer"
+                    + " a l'utilisateur les possibilitï¿½s" + args);
             switch (value) {
             case 1:
                 LOG.info("Recuperation des labels GMAIL");
@@ -47,26 +50,34 @@ public class CmdLineLauncher {
             case 2:
                 LOG.info("Recuperation du nombre d'emails Gmail");
                 server.getNbUnreadEmail(userKey);
-                System.out.println("vous avez " + server.getNbUnreadEmail(userKey) + " message non lus");
+                System.out.println("vous avez "
+                        + server.getNbUnreadEmail(userKey)
+                        + " message non lus");
                 break;
 
             case nUMBERtHREE:
-                LOG.info("Recuperation du prochain évenements inscrit dans l'API Calendar");
+                LOG.info("Recuperation du prochain "
+                        + "evenements inscrit dans l'API Calendar");
                 server.getNextEvent(userKey);
                 System.out.println(server.getNextEvent(userKey));
                 break;
 
             case nUMBERnINE:
-                LOG.info("Recuperation en un seul appel de tous les éléments sus-mentionnés");
+                LOG.info("Recuperation en un seul"
+                        + " appel de tous les ï¿½lï¿½ments sus-mentionnï¿½s");
                 server.getLabels(userKey);
                 System.out.println(server.getLabels(userKey));
-                System.out.println("vous avez " + server.getNbUnreadEmail(userKey) + " message non lus");
+                System.out.println("vous avez "
+                + server.getNbUnreadEmail(userKey) + " message non lus");
                 System.out.println(server.getNextEvent(userKey));
                 break;
 
             default:
-                LOG.warn("Message par défaut retourné en cas de non utilisation des variables 1, 2, 3 ou 9");
-                System.out.println("vous devez rentrer un numéro : 1, 2, 3 ou 9");
+                LOG.warn("Message par dï¿½faut retourne"
+                        + " en cas de non utilisation des variables"
+                        + " 1, 2, 3 ou 9");
+                System.out.println("vous devez rentrer un numero"
+                        + " : 1, 2, 3 ou 9");
                 break;
 
             }
@@ -74,54 +85,16 @@ public class CmdLineLauncher {
 
     }
 
+    /**
+     * indication for user.
+     * Concern write failure
+     * of userKey
+     * @return the good form
+     */
     private static String usage() {
         return "xxxx.jar {userKey} {action} \nsample : xxxx.jar djer 2";
     }
 
-    //    private static String getNextEvent() throws IOException {
-    //        String event = callServer("/event/next");
-    //        return event;
-    //    }
-    //
-    //    private static String getLabels() throws IOException {
-    //        String label = callServer("/label/print");
-    //        return label;
-    //    }
-    //
-    //    private static String getNbUnreadEmail() throws IOException {
-    //        String nbEmail = callServer("/email/nbUnread");
-    //
-    //        return nbEmail;
-    //    }
-    //
-    //    private static String callServer(String url) throws IOException {
-    //
-    //        URL obj = new URL("http://localhost:8080/" + url);
-    //        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-    //
-    //        // optional default is GET
-    //        con.setRequestMethod("GET");
-    //
-    //        //add request header
-    //        con.setRequestProperty("User-Agent", USER_AGENT);
-    //
-    //        int responseCode = con.getResponseCode();
-    //        System.out.println("\nSending 'GET' request to URL : " + "http://localhost:8080/" + url);
-    //
-    //        System.out.println("Response Code : " + responseCode);
-    //
-    //        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-    //        String inputLine;
-    //        StringBuffer response = new StringBuffer();
-    //
-    //        while ((inputLine = in.readLine()) != null) {
-    //            response.append(inputLine);
-    //        }
-    //        in.close();
-    //
-    //        //print result
-    //        return response.toString();
-    //
-    //    }
+
 
 }
