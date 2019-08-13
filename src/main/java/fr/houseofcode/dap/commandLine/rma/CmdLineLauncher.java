@@ -27,16 +27,15 @@ public class CmdLineLauncher {
 
         LOG.debug("D�but du Main avec comme argument : " + args);
 
-        if (args.length < 2) {
-            System.out.println(usage());
-        } else {
-            String userKey = args[0];
+       
+            
             UtilsServer server = new UtilsServer();
 
              final int nUMBERtHREE = 3;
              final int nUMBERnINE = 9;
 
-             int value = Integer.parseInt(args[1]);
+             int value = Integer.parseInt(args[0]);
+             String userKey = args[1];
 
             LOG.info("Utilisation d'un switch pour indiquer"
                     + " a l'utilisateur les possibilit�s" + args);
@@ -81,20 +80,11 @@ public class CmdLineLauncher {
                 break;
 
             }
-        }
+        
 
     }
 
-    /**
-     * indication for user.
-     * Concern write failure
-     * of userKey
-     * @return the good form
-     */
-    private static String usage() {
-        return "xxxx.jar {userKey} {action} \nsample : xxxx.jar djer 2";
-    }
-
+    
 
 
 }
