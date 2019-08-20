@@ -1,9 +1,12 @@
 package fr.houseofcode.dap.commandLine.rma;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 /**
   * @author rma
@@ -23,6 +26,21 @@ public class UtilsServer {
      * @return the next event on server using identification
      * @throws IOException exception
      */
+    
+    public void createAccount (String userKey) throws IOException {
+    	String account = "http://localhost:8080/account/add/" + userKey;
+    	try {
+			Desktop.getDesktop().browse(new URI(account));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    
     public String getNextEvent( String userKey) throws IOException {
         String event = callServer("/event/next", userKey);
         return event;
@@ -63,16 +81,19 @@ public class UtilsServer {
     private String callServer( String url,  String userKey)
             throws IOException {
 
+    		
         URL obj = new URL("http://localhost:8080"
                 + url + "?userKey=" + userKey);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
+
+    	
         // optional default is GET
         con.setRequestMethod("GET");
 
         //add request header
         con.setRequestProperty("User-Agent", uSErAGENT);
-
+    	
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'GET' request to URL : "
                 + "http://localhost:8080" + url);
@@ -83,12 +104,12 @@ public class UtilsServer {
                 new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
-
+    	
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
         }
         in.close();
-
+    	
         //print result
         return response.toString();
 

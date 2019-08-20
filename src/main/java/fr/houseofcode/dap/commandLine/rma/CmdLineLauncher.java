@@ -1,6 +1,8 @@
 package fr.houseofcode.dap.commandLine.rma;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,28 +29,30 @@ public class CmdLineLauncher {
 
         LOG.debug("D�but du Main avec comme argument : " + args);
 
-       
+        
             
             UtilsServer server = new UtilsServer();
-
-             final int nUMBERtHREE = 3;
+            
+        	 final int nUMBERtHREE = 3;
              final int nUMBERnINE = 9;
 
              int value = Integer.parseInt(args[0]);
              String userKey = args[1];
+             
+            
 
             LOG.info("Utilisation d'un switch pour indiquer"
                     + " a l'utilisateur les possibilit�s" + args);
             switch (value) {
             case 1:
                 LOG.info("Recuperation des labels GMAIL");
-                server.getLabels(userKey);
+                
                 System.out.println(server.getLabels(userKey));
                 break;
 
             case 2:
                 LOG.info("Recuperation du nombre d'emails Gmail");
-                server.getNbUnreadEmail(userKey);
+                
                 System.out.println("vous avez "
                         + server.getNbUnreadEmail(userKey)
                         + " message non lus");
@@ -57,19 +61,23 @@ public class CmdLineLauncher {
             case nUMBERtHREE:
                 LOG.info("Recuperation du prochain "
                         + "evenements inscrit dans l'API Calendar");
-                server.getNextEvent(userKey);
+                
                 System.out.println(server.getNextEvent(userKey));
                 break;
 
             case nUMBERnINE:
                 LOG.info("Recuperation en un seul"
                         + " appel de tous les �l�ments sus-mentionn�s");
-                server.getLabels(userKey);
+                
                 System.out.println(server.getLabels(userKey));
                 System.out.println("vous avez "
                 + server.getNbUnreadEmail(userKey) + " message non lus");
                 System.out.println(server.getNextEvent(userKey));
                 break;
+                
+            case 5:
+            	 LOG.info("creation d'un compte");
+            	server.createAccount(userKey);
 
             default:
                 LOG.warn("Message par d�faut retourne"
