@@ -28,7 +28,7 @@ public final class CmdLineLauncher {
      * @throws IOException exception
      */
     public static void main(final String[] args) throws IOException {
-        LOG.debug("Début du Main avec comme argument : {}.", args);
+        LOG.debug("Début du Main avec comme argument");
         UtilsServer server = new UtilsServer();
         LOG.info("Instanciation d'un UtilsServer");
         final int numberThree = 3;
@@ -37,7 +37,7 @@ public final class CmdLineLauncher {
         final int numberNine = 9;
         Integer value = Integer.parseInt(args[0]);
         String userKey = args[1];
-        LOG.info("Utilisation d'un switch pour indiquer a l'utilisateur les possibilités : {}.", args);
+        LOG.info("Utilisation d'un switch pour indiquer a l'utilisateur les possibilités");
         switch (value) {
             case 1:
                 LOG.info("Recuperation des labels GMAIL");
