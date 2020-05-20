@@ -13,6 +13,7 @@
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
+			<!-- TODO RAM by Djer |Maven| Tu peux enlever le commentaire "NO-MVN-MAN-VER" il servait losque'on avait Spring-boot pour forcer **notre** version de log4J, sans avoir de warniong -->
 			<version>2.9.1</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 		<dependency>

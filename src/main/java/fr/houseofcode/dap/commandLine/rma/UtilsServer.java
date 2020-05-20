@@ -1,8 +1,5 @@
 package fr.houseofcode.dap.commandLine.rma;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,6 +8,11 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+//TODO RMA by Djer |JavaDoc| En JavaDoc la "description" est sur la première lignes (au pire "les" premières) et les @xxx arivent ensuite).
 /**
   * @author rma
  * 5 august. 2019
@@ -19,12 +21,14 @@ import java.net.URL;
  * to google API
  */
 public class UtilsServer {
-    /**
-     * @return access to constant LOG.
-     */
+    /** @return access to constant LOG. */
     private static final Logger LOG = LogManager.getLogger();
+
+    //TODO RMA by Djer |JavaDoc| Documentation fausse, ceci est une variable, pas une constante (devrait être "static final" et écrite en MAJUSCULE)
     /**Constant to define which browse is using.*/
-    private  String userAgent = "Mozilla/5.0";
+    private String userAgent = "Mozilla/5.0";
+
+    //TODO RMA by Djer |POO| Créer une constante pour l'URL du server (http://localhost:9090)
 
     /**
      * Load web page to add a user account on server.
@@ -46,14 +50,18 @@ public class UtilsServer {
         loadWebPage(account);
     }
 
+    //TODO RMA by Djer |Audit Code| Il manque le commentaire JavaDoc.
+
     private void loadWebPage(final String account) {
         try {
             Desktop.getDesktop().browse(new URI(account));
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
+            //TODO RMA by Djer |Gestion Exception| Evite le "e.printStackTrace", cela affiche en "moche" directement dans la console. Ta Log (juste au dessus) fait le même boulot mais en plus propre et en **configurable**
             e.printStackTrace();
         } catch (URISyntaxException e) {
             LOG.error(e.getMessage(), e);
+            //TODO RMA by Djer |Gestion Exception| Evite le "e.printStackTrace", cela affiche en "moche" directement dans la console. Ta Log (juste au dessus) fait le même boulot mais en plus propre et en **configurable**
             e.printStackTrace();
         }
     }
@@ -98,10 +106,8 @@ public class UtilsServer {
      * @return a call to the server using identification
      * @throws IOException exception
      */
-    private String callServer(final String url, final String userKey)
-            throws IOException {
-        URL obj = new URL("http://localhost:9090"
-                + url + "?userKey=" + userKey);
+    private String callServer(final String url, final String userKey) throws IOException {
+        URL obj = new URL("http://localhost:9090" + url + "?userKey=" + userKey);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         // optional default is GET
@@ -111,13 +117,12 @@ public class UtilsServer {
         con.setRequestProperty("User-Agent", userAgent);
 
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'GET' request to URL : "
-                + "http://localhost:9090" + url);
+        //TODO RMA by Djer |POO| Pas de SysOut pour des log ! Utilise le LOGGER (surement du "debug" ici)
+        System.out.println("\nSending 'GET' request to URL : " + "http://localhost:9090" + url);
 
         System.out.println("Response Code : " + responseCode);
 
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
 
@@ -126,6 +131,7 @@ public class UtilsServer {
         }
         in.close();
 
+        //TODO RMA by Djer |POO| Ce commentaire est devenu faux, la ligne ci-dessous n'affiche rien, elle renvoie une chaine de texte (évite le plus possivble les "commentaire" dans le code, ils deviennent vite faux, et le code devrait être lisible sans commentaire)
         //print result
         return response.toString();
     }
